@@ -34,3 +34,6 @@ imap <F12> <Esc><F12>
 noremap <F12> <Esc>:w<Cr>:make<Cr>
 filetype on
 au BufNewFile,BufRead *.ums set filetype=ums
+
+"activate neocomplcache
+let g:neocomplcache_enable_at_startup = 1
