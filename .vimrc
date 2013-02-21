@@ -21,11 +21,6 @@ map <C-S-i> mzgg=G`z<CR>
 
 :set expandtab
 :set smarttab
-:set textwidth=80
-"highlight long lines
-highlight OverLength ctermbg=red ctermfg=white guibg=#592929
-match OverLength /\%81v.\+/
-
 :set number
 
 "Compile with 1 step
