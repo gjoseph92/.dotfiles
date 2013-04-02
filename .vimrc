@@ -1,3 +1,4 @@
+:set shell=bash\ --login
 :set ruler
 
 :filetype on
