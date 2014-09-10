@@ -1,17 +1,40 @@
 alias sshcs='ssh gjosep02@linux.cs.tufts.edu'
 alias sshtmc='ssh gjoseph@tuftsmountainclub.org'
-alias cdtmc='cd /Users/gjoseph/Documents/Projects/TMC/TMC'
+alias cdtmc='cd /Users/gjoseph/Documents/Projects/TMC/dev'
 alias cls='clear; ls'
 alias parent='ps -o comm= -p $PPID'
 alias markdown='multimarkdown'
 export PATH="$PATH:/usr/local/sbin"
 
+CS_USERNAME="gjosep02"
 scpcs() {
+  if [ $# -lt 2 ]
+    then
+      echo "Useage: scpcs files destination/path/on/cs/server"
+      return
+  fi
   numfiles=$(($#-1))
   files=${@:1:$numfiles}
   dest="${!#}"
-  ssh gjosep02@linux.cs.tufts.edu "mkdir -p $dest"
-  scp -r $files "gjosep02@linux.cs.tufts.edu:$dest"
+  ssh $CS_USERNAME@linux.cs.tufts.edu "mkdir -p $dest"
+  scp -r $files "$CS_USERNAME@linux.cs.tufts.edu:$dest"
+  ssh $CS_USERNAME@linux.cs.tufts.edu -t "cd $dest ; exec \$SHELL"
+}
+
+provide() {
+  if [ $# -lt 4 ]
+    then
+      echo "Useage: provide class assignment files destination/path/on/cs/server"
+      return
+  fi
+  numfiles=$(($#-3))
+  class=$1
+  assignment=$2
+  files=${@:3:$numfiles}
+  dest="${!#}"
+  ssh $CS_USERNAME@linux.cs.tufts.edu "mkdir -p $dest"
+  scp -r $files "$CS_USERNAME@linux.cs.tufts.edu:$dest"
+  ssh $CS_USERNAME@linux.cs.tufts.edu -t "cd $dest ; provide $class $assignment $files"
 }
 
 export CLICOLOR=1
@@ -26,3 +49,8 @@ export GREP_COLOR='1;35;40'
 export PATH="$PATH:/usr/local/heroku/bin"
 
 # [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+
+export YAAFE_PATH="/usr/lib/yaafe/yaafe_extensions"
+export PATH="$PATH:/usr/lib/yaafe/bin"
+export DYLD_LIBRARY_PATH="$DYLD_LIBRARY_PATH:/usr/lib/yaafe/lib"
+export PYTHONPATH="$PYTHONPATH:/usr/lib/yaafe/python_packages"
