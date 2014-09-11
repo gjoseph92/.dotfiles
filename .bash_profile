@@ -41,16 +41,8 @@ export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
 export GREP_OPTIONS='--color=always'
 export GREP_COLOR='1;35;40'
+PS1='\[\e[0;32m\]\h:\u\[\e[m\] \[\e[1;34m\]\w\[\e[m\] \[\e[1;32m\]\$\[\e[m\] '
 
 # Path for OpenCV in Python
 #export PYTHONPATH="/usr/local/lib/python2.7/site-packages:$PYTHONPATH"
 
-### Added by the Heroku Toolbelt
-export PATH="$PATH:/usr/local/heroku/bin"
-
-# [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-
-export YAAFE_PATH="/usr/lib/yaafe/yaafe_extensions"
-export PATH="$PATH:/usr/lib/yaafe/bin"
-export DYLD_LIBRARY_PATH="$DYLD_LIBRARY_PATH:/usr/lib/yaafe/lib"
-export PYTHONPATH="$PYTHONPATH:/usr/lib/yaafe/python_packages"
